@@ -11,9 +11,9 @@ public class MyRouteBuilder extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("timer:hello?period={{timer.period}}")
-                .transform(method("myBean", "saySomething"))
-                .to("stream:out");
+        from("jetty://http://localhost:8080/say")
+                .transform(method("myBean", "saySomething"));
+                //.to("stream:out");
     }
 
 }
